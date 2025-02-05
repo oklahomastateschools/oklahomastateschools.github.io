@@ -13,7 +13,7 @@
     <meta property="og:image:height" content="200">
     <meta name="theme-color" content="#0d0d0d">
     <meta name="msapplication-TileColor" content="#262261">
-
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TFZ72L5FPQ"></script>
     <script>
@@ -51,12 +51,20 @@
         button:hover {
             background-color: #666;
         }
+        .hidden-content {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <h1>Enter Passcode</h1>
     <input type="password" id="passcode" placeholder="Enter passcode">
     <button onclick="checkPasscode()">Submit</button>
+    
+    <div id="protected-content" class="hidden-content">
+        <!-- Protected content goes here -->
+        <p>This is the protected content that is displayed after entering the correct passcode.</p>
+    </div>
 
     <script>
         const correctPasscode = "9758";
@@ -64,7 +72,9 @@
         function checkPasscode() {
             const enteredPasscode = document.getElementById("passcode").value;
             if (enteredPasscode === correctPasscode) {
-                window.location.href = "https://github.com/mathpunch/shiny-guacamole/raw/77b6f4a3e31f4a8ede7e32f349831f25a105f987/Hydra%20Proxy%20Lock%202.pdf";
+                document.getElementById("protected-content").style.display = 'block';
+                document.getElementById("passcode").style.display = 'none';
+                document.querySelector('button').style.display = 'none';
             } else {
                 alert("Incorrect passcode. Try again.");
             }
